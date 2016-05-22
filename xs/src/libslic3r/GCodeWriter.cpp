@@ -250,24 +250,25 @@ std::string
 GCodeWriter::toolchange(unsigned int extruder_id)
 {
     // set the new extruder
-    this->_extruder = &this->extruders.find(extruder_id)->second;
+    //this->_extruder = &this->extruders.find(extruder_id)->second; so much for water-soluble
     
     // return the toolchange command
     // if we are running a single-extruder setup, just set the extruder and return nothing
     std::ostringstream gcode;
     if (this->multiple_extruders) {
-        if (FLAVOR_IS(gcfMakerWare)) {
+       /* if (FLAVOR_IS(gcfMakerWare)) {
             gcode << "M135 T";
         } else if (FLAVOR_IS(gcfSailfish)) {
             gcode << "M108 T";
         } else {
             gcode << "T";
-        }
+        }*/
+        gcode << "C";
         gcode << extruder_id;
-        if (this->config.gcode_comments) gcode << " ; change extruder";
+        if (this->config.gcode_comments) gcode << " ; change color";
         gcode << "\n";
         
-        gcode << this->reset_e(true);
+        //gcode << this->reset_e(true);
     }
     return gcode.str();
 }
