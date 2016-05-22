@@ -17,12 +17,12 @@ class Extruder
     double restart_extra;
     double e_per_mm3;
     double retract_speed_mm_min;
-    int color [3];
+    //int color [3];
     
     Extruder(unsigned int id, GCodeConfig *config);
     virtual ~Extruder() {}
     void reset();
-    void setColor(int r, int g, int b);
+    //void setColor(int r, int g, int b);
     double extrude(double dE);
     double retract(double length, double restart_extra);
     double unretract();
